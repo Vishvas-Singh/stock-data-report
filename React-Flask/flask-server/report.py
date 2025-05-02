@@ -1,27 +1,29 @@
-from flask import Flask, jsonify, redirect, url_for
 import requests
 import json
 from datetime import datetime
 
-app = Flask(__name__)
-
-if __name__ == "__main__":
-    app.run(debug=True)
-
-# load watchlist
 def get_stock_watchlist(filename="watchlist.json"):
     try:
         with open(filename, 'r') as file:
-            return json.load(file)
+            watchlist = json.load(file)
     except (FileNotFoundError, json.JSONDecodeError):
-        return []
+        watchlist = []
 
-# save wathclist
-def save_wathclist(watchlist):
-    with open("watchlist.json", 'w') as file:
+    print("Enter the stock symbols you want to add to your watchlist. Type 'done' when finished.")
+
+    while True:
+        symbol = input("Stock: ")
+
+        if symbol == 'done':
+            break
+        else:
+            watchlist.append(symbol)
+
+    with open(filename, 'w') as file:
         json.dump(watchlist, file, indent=4)
 
-# Fetch stock data
+    return watchlist
+
 def fetch_stock_data(symbol):
     url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey=FZUW66LFY0OSONCO'
     response = requests.get(url)
@@ -38,20 +40,16 @@ def fetch_stock_data(symbol):
 
         latest_data = raw_data['Time Series (Daily)'][latest_date]
 
-        return {
-            "symbol": symbol,
-            "date": latest_date,
-            "open": latest_data['1. open'],
-            "close": latest_data['4. close'],
-            "high": latest_data['2. high'],
-            "low": latest_data['3. low']
-        }
+        print(f"Today's data for {symbol}: ")
+        print(f"Open: {latest_data['1. open']}")
+        print(f"Close: {latest_data['4. close']}")
+        print(f"High: {latest_data['2. high']}")
+        print(f"Low: {latest_data['3. low']}")
     else:
-        return {"error": f"Failed to retrieve data {response.status_code}"}
-    
-# Home route
-@app.route("/", method = ['GET', 'POST'])
-def home():
+        print(f"Failed to retrieve data {response.status_code}")
+        return None
+
+if __name__ == "__main__":
     watchlist = get_stock_watchlist()
 
     print("Would you like today's stock data? (Y/N): ")
@@ -62,13 +60,3 @@ def home():
                 fetch_stock_data(symbol)
         else:
             break
-
-# Stock data route
-@app.route("/stock/<symbol>")
-def stock_data(symbol):
-    data = fetch_stock_data()
-
-    if data:
-        return jsonify(data)
-    else:
-        return jsonify({"error": f"Stock data for {symbol} not found."})
