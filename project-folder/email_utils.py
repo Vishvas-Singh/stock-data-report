@@ -16,4 +16,3 @@ def send_email(subject, message):
         server.starttls()
         server.login(EMAIL_USER, EMAIL_PASS)
         server.sendmail(EMAIL_USER, NOTIFICATION_EMAIL, msg.as_string())
-
