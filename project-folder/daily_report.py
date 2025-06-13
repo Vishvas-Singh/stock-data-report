@@ -11,7 +11,7 @@ def fetch_stock_data(symbol):
         return None
     
     raw_data = response.json()
-    if 'Time Series (Daily)' not in data:
+    if 'Time Series (Daily)' not in raw_data:
         return None
 
     iterator = iter(raw_data['Time Series (Daily)'])
