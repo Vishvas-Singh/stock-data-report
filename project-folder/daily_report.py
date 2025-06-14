@@ -4,7 +4,7 @@ from email_utils import send_email
 from credentials import ALPHA_VANTAGE_API_KEY
 
 def fetch_stock_data(symbol):
-    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey=FZUW66LFY0OSONCO'
+    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={ALPHA_VANTAGE_API_KEY}'
     response = requests.get(url)
 
     if response.status_code != 200:
