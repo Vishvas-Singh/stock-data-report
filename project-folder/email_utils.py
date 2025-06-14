@@ -12,7 +12,7 @@ def send_email(subject, message):
     msg['From'] = EMAIL_USER
     msg['To'] = NOTIFICATION_EMAIL
 
-    with smtplib.SMTP(smtp_server, smtp_port) as server:
+    with smtplib.SMTP_SSL(smtp_server, smtp_port) as server:
         server.starttls()
         server.login(EMAIL_USER, EMAIL_PASS)
         server.sendmail(EMAIL_USER, NOTIFICATION_EMAIL, msg.as_string())
