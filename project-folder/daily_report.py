@@ -46,7 +46,7 @@ def main ():
         else: 
             summary += f"⚠️ {symbol}: Data unavailable.\n\n"
 
-        send_email("Daily Stock Watchlist Summary", summary)
+    send_email("Daily Stock Watchlist Summary", summary)
 
 if __name__ == "__main__":
     main()

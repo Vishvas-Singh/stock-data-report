@@ -12,7 +12,9 @@ def send_email(subject, message):
     msg['From'] = EMAIL_USER
     msg['To'] = NOTIFICATION_EMAIL
 
+    smtp_server = 'smtp.gmail.com'
+    smtp_port = 465 
+
     with smtplib.SMTP_SSL(smtp_server, smtp_port) as server:
-        server.starttls()
         server.login(EMAIL_USER, EMAIL_PASS)
-        server.sendmail(EMAIL_USER, NOTIFICATION_EMAIL, msg.as_string())
+        server.send_message(msg)
