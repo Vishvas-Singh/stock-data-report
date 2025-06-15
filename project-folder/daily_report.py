@@ -37,7 +37,7 @@ def main ():
         stock_data = fetch_stock_data(symbol)
         if stock_data:
             summary += (
-                f"Symbol: {stock_data['symbol']} ({stock_data['date']})"
+                f"Symbol: {stock_data['symbol']} ({stock_data['date']})\n"
                 f"Open: ${stock_data['open']:.2f}\n"
                 f"High: ${stock_data['high']:.2f}\n"
                 f"Low: ${stock_data['low']:.2f}\n"
