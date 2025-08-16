@@ -36,11 +36,11 @@ cd <repo-folder>
    NEWS_API_KEY = "<your_news_api_key>"
    EMAIL_USER = "<your_email>
    EMAIL_PASS = "<your_email_password>
-   NOTIFICATION_EMAIL = "<recipient_email>```
+   NOTIFICATION_EMAIL = "<recipient_email>
 
 3. Run the daily report script:
    ```bash
-   python daily_report.py```
+   python daily_report.py
 
 # Example Output
 ```bash
