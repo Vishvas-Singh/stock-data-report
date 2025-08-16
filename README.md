@@ -27,8 +27,8 @@ This Python project automatically fetches daily stock prices for your personaliz
 
 1. Clone the repository:  
 ```bash
-git clone <repo-url>
-cd <repo-folder>
+git clone https://github.com/Vishvas-Singh/stock-data-report
+cd project-folder
 ```
 2. Create a credentials.py file with your API keys and email credentials:
    ```bash
