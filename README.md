@@ -29,9 +29,31 @@ This Python project automatically fetches daily stock prices for your personaliz
 ```bash
 git clone <repo-url>
 cd <repo-folder>
+```
+2. Create a credentials.py file with your API keys and email credentials:
+   ```bash
+   ALPHA_VANTAGE_API_KEY = "<your_alpha_vantage_key>"
+   NEWS_API_KEY = "<your_news_api_key>"
+   EMAIL_USER = "<your_email>
+   EMAIL_PASS = "<your_email_password>
+   NOTIFICATION_EMAIL = "<recipient_email>```
 
-2. Install dependencies
-'''pip install requests
-''''
+3. Run the daily report script:
+   ```bash
+   python daily_report.py```
+
+# Example Output
+```bash
+📰 Top Financial News 📰
+1. Stock market hits new highs
+   Source: Bloomberg | 2025-08-15
+   Link: https://...
+
+📊 Stock Watchlist Summary 📊
+Symbol: AAPL (2025-08-14)
+Open: $172.50
+High: $175.00
+Low: $171.00
+Close: $174.25```
 
 
